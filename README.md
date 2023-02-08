@@ -14,6 +14,8 @@
 
   composer install
 
+  php bin/console migrate
+
   php bin/console server:run
 
 - run under the frontend folder
