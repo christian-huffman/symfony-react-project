@@ -1,4 +1,4 @@
-import "./login.scss";
+import "./register.scss";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -13,17 +13,21 @@ const schema = Yup.object().shape({
     .min(6, "Password must be at least 6 characters"),
 });
 
-export default function Login(props) {
+export default function Register(props) {
   const handleFormSubmit = (values) => {
-    console.log("values", values.email);
     axios
-      .post(`http://localhost:8000/api/login`, {
+      .post(`http://localhost:8000/api/register`, {
         email: values.email,
         password: values.password,
       })
       .then((response) => {
-        console.log("response", response);
-      });
+        window.alert(`Succesfully registered 
+          id: ${response.data.id},
+          email: ${response.data.email},
+          password: ${response.data.password}
+        `);
+      })
+      .catch((errors) => console.error("errors", errors));
   };
   return (
     <>
@@ -42,12 +46,10 @@ export default function Login(props) {
           handleBlur,
           handleSubmit,
         }) => (
-          <div className="login">
+          <div className="register">
             <div className="form">
-              {/* Passing handleSubmit parameter tohtml form onSubmit property */}
               <form noValidate onSubmit={handleSubmit}>
-                <span>Login</span>
-                {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
+                <span>Register User</span>
                 <input
                   type="email"
                   name="email"
@@ -58,11 +60,9 @@ export default function Login(props) {
                   className="form-control inp_text"
                   id="email"
                 />
-                {/* If validation is not passed show errors */}
                 <p className="error">
                   {errors.email && touched.email && errors.email}
                 </p>
-                {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="password"
                   name="password"
@@ -72,12 +72,10 @@ export default function Login(props) {
                   placeholder="Enter password"
                   className="form-control"
                 />
-                {/* If validation is not passed show errors */}
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-                {/* Click on submit button to submit the form */}
-                <button type="submit">Login</button>
+                <button type="submit">Register</button>
               </form>
             </div>
           </div>

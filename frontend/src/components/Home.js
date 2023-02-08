@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes, Navigate, Link, withRouter } from "react-router-dom";
 import Users from "./Users";
 import Posts from "./Posts";
-import Login from "./Login";
+import Register from "./Register";
 
 export default function Home(props) {
   return (
@@ -31,10 +31,10 @@ export default function Home(props) {
         </div>
       </nav> */}
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/users" element={<Users />} />
         <Route path="/posts" element={<Posts />} />
-        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/" element={<Navigate replace to="/register" />} />
       </Routes>
     </div>
   );
