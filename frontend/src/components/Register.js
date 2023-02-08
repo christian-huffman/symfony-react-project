@@ -27,7 +27,10 @@ export default function Register(props) {
           password: ${response.data.password}
         `);
       })
-      .catch((errors) => console.error("errors", errors));
+      .catch((errors) => {
+        window.alert("Failed, please check the console errors.");
+        console.error("errors", errors);
+      });
   };
   return (
     <>
